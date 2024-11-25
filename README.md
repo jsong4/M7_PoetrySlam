@@ -1,5 +1,9 @@
 # M7_PoetrySlam
 
 How to run:
-1) Download spaCy in terminal: pip install spacy
-2) Dowload en-core-web-sm in terminal: spacy download en_core_web_sm
+
+1) Make the following downloads in terminal:
+        Download spaCy: pip install spacy
+        Dowload en-core-web-sm: spacy download en_core_web_sm
+        Download pyttsx3: pip install pyttsx3
+        Download matplotlib: pip install matplotlib
