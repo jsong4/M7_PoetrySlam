@@ -65,7 +65,7 @@ use functionalities that I have never heard of before. For instance, I
 had to do research on how to make my system read my poem aloud. Another 
 example would be the use of vaderSentiment -- I wanted to think of a 
 non-user-based way to see how dark my poem really is, for instance by 
-keeping track of the descrptive word choice, so I researched an came 
+keeping track of the descrptive word choice. So, I researched and came 
 across vaderSentiment and learned how to incorporate it into my code 
 and overall evaluation of my poems.
 
@@ -100,4 +100,15 @@ characteristics of each system. To calculate a more subjective
 POV on my system's output, I ask for users to provide their 
 own feedback on how original and dark the created poem is.
 
-3) 
+3) "[A creative computing approach to poetry as data](https://researchspace.bathspa.ac.uk/11560/)"
+   by Wang
+
+Although this paper primarily focuses on the use of poetry 
+as data, I found its conversation on the potential uses of 
+such data to be quite interesting. It discusses how previous 
+poems can be used to inspire new human art creation. In an 
+adjacent way, I read through numerous other scary, dark 
+poems by poets such as Edgar Allen Poe, from which I derived 
+many of the subjects, locations, etc. that I used in my system. 
+Like this paper stated, I used influence of past poems 
+to get a start on my creative system.
