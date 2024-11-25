@@ -7,14 +7,11 @@ Course: CSCI 3725\
 Assignment: M7 - Poetry Slam\
 Date: November 24, 2024
 
-**DESCRIPTION:**
-
-
 **HOW TO RUN:**
 1) Make the following downloads in terminal:
         Download pyttsx3: "pip install pyttsx3"\
         Download matplotlib: "pip install matplotlib"\
-        Download vaderSentiment: "pip install vaderSentiment"\
+        Download vaderSentiment: "pip install vaderSentiment"
 
         Note: Ensure that you have the "Trattatello" font in your computer
         (This is a standard font that should come with any macOS system).
@@ -27,9 +24,60 @@ Date: November 24, 2024
 5) Input the user review questions in the terminal
 6) View Poem and Evaluation in the new text file added to 'output'
 
-HOW WORKING ON THIS SYSTEM CHALLENGED ME AS A COMPUTER SCIENTIST:
+**DESCRIPTION:**
 
-SCHOLARLY PAPERS THAT INSPIRED MY APPROACH:
+**Generation**
+The Spooky Syntax System creates a visually descriptive poem following the 
+theme of horror and darkness. Taking from a pool of subjects, verbs, objects, 
+adjectives, and places, the system randomly selects from each category 
+and combines them into a scary line. Then, based on the number of lines 
+desired by the user, the system will output more lines that will follow the 
+previous theme. To create more continuity, it will expand upon themes 
+of darkness, paranoia, decay, or death based on key words from the prior 
+line.
+
+To add to the theme of spookiness, the system uses a slowed and relatively 
+quiet voice to read out the lines. It then uses matplotlib to display 
+the poem, using a strange font and randomized sizes and colors to enhance 
+this uneasy sensation.
+
+**Creativity Evaluation Metrics**
+To evaluate the creativity of the outputted poem, the system strongly values 
+user feedback, while also incorporating objective analysis. It asks the user 
+how negative/dark the poem felt, as well as how original/novel the poem 
+was to them. In addition, it uses vaderSentiment to give a compound score 
+from -1 to 1 indicating how negative the text is, based on the words chosen.  
+Since we want the poem to be as negative as possible, we ideally want the 
+poem's score to be closer to -1.
+
+Combining all these values of originality and value, we calculate a combined 
+score between 1-20 for the performance of the generator. This number is 
+derived from the negative of the vaderSentiment (because we want it to be 
+negative) multiplied by the user sentiment, plus the user originality rating. 
+
+**HOW WORKING ON THIS SYSTEM CHALLENGED ME AS A COMPUTER SCIENTIST:**
+
+Creating this system challenged me as a computer scientist by making me 
+use functionalities that I have never heard of before. For instance, I 
+had to do research on how to make my system read my poem aloud. Another 
+example would be the use of vaderSentiment -- I wanted to think of a 
+non-user-based way to see how dark my poem really is, for instance by 
+keeping track of the descrptive word choice, so I researched an came 
+across vaderSentiment and learned how to incorporate it into my code 
+and overall evaluation of my poems.
+
+In a broader sense, working on this system was particularly challenging 
+for me due to my other personal commitments resulting in a very limited 
+amount of time available for this code. Having to balance the peak of 
+my job application and interview process as a senior in college 
+applying for full-time positions and other responsibilities as a leader 
+in numerous on-campus teams and organizations made me ensure that my 
+time spent on this system was optimal and efficiently used. I learned 
+to error check, research new strategies, and evaluate my current work 
+at much faster rates than before, which I believe made me a much 
+stronger computer scientist all around.
+
+**SCHOLARLY PAPERS THAT INSPIRED MY APPROACH:**
 
 1) 
 2) 
