@@ -1,0 +1,10 @@
+Created Poem:
+The possessed child clawed decayed in the basement under the blackened sky.
+An old man reached decaying over the bones by the full moon.
+The faceless thing clawed bones through the darkness under the bed.
+
+Sentiment (<0 means negative, >0 means positive): -0.7096
+--> Therefore the Poem Seems Very Dark
+User Negativity Sentiment (1-10): 8
+User Creativity Score (1-10): 9
+Overall Score (1-20): 14.6768

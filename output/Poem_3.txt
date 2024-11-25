@@ -1,0 +1,9 @@
+Created Poem:
+A dark shadow screamed foul in the basement in the abandoned asylum.
+cold night tiptoed emaciated from the darkness on the abandoned road.
+
+Sentiment (<0 means negative, >0 means positive): -0.8519
+--> Therefore the Poem Seems Very Dark
+User Negativity Sentiment (1-10): 7
+User Creativity Score (1-10): 8
+Overall Score (1-20): 13.9633

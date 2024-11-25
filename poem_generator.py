@@ -9,16 +9,12 @@ Date: November 24, 2024
 Generation and evaluation of horror-themed poem
 """
 
-import spacy
 import random
 import pyttsx3
 import os
 import glob
 import matplotlib.pyplot as plt
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-# import spaCy's language model to be used for dependency parsing
-nlp = spacy.load("en_core_web_sm")
 
 # Initial word lists following a theme of horror
 subjects = ["A dark shadow", "An old man", "A ghostly figure", "The corpse",
@@ -62,9 +58,7 @@ def generate_sentence(previous_lines):
                                       to inform the theme expansion.
 
     Returns:
-        tuple: A tuple containing:
-            - str: The generated horror-themed sentence.
-            - spacy.tokens.doc.Doc: The parsed spaCy document of the sentence.
+        str: The generated horror-themed sentence.
     """
 
     # Dynamically update word lists based on previous lines
@@ -89,10 +83,9 @@ def generate_sentence(previous_lines):
 
     # Generate a new sentence using spaCy dependency parsing
     sentence = f"{subject} {verb} {adjective} {object} {place}."
-    doc = nlp(sentence)
     
     # Store the sentence for future context-building
-    return sentence, doc
+    return sentence
 
 # Function to generate the horror poem in a self-generating loop, given number
 # of stanzas wanted
@@ -114,7 +107,7 @@ def generate_horror_poem(num_stanzas):
     
     # Number of stanzas
     for _ in range(num_stanzas):
-        line, doc = generate_sentence(previous_lines)
+        line = generate_sentence(previous_lines)
         poem.append(line)
         # Add the line to the context for the next generation
         previous_lines.append(line)
@@ -152,6 +145,9 @@ def display_poem(poem):
     Parameters:
         poem (str): The poem to be displayed with spooky effects.
     """
+    # Choose Trattatello font from my local system, can be changed
+    chosen_font = "Trattatello"
+
     # Create a figure and axis
     fig, ax = plt.subplots(figsize=(10, 8))
     
@@ -162,17 +158,17 @@ def display_poem(poem):
     # Hide axis lines
     ax.axis('off')
 
-    # Title in spooky style
+    # Title in spooky style (red Trattatello font)
     ax.text(0.5, 0.95, 'Your Spooky Poem', fontsize=30, ha='center', va='top', 
-            color='red', fontname='Trattatello', alpha=0.9)
+            color='red', fontname=chosen_font, alpha=0.9)
     
-    # Display the poem with random spooky effects (like colors, size variations)
+    # Display the poem with random spooky effects of size, color, etc.
     y_pos = 0.85
     for line in poem.split('\n'):
         ax.text(0.5, y_pos, line, fontsize=random.randint(12, 20), ha='center',
                 va='top', 
                 color=random.choice(['white', 'grey', 'red']), 
-                fontname='Trattatello', alpha=0.8)
+                fontname=chosen_font, alpha=0.8)
         y_pos -= 0.1  # Move down the line a bit
 
     # Show the plot

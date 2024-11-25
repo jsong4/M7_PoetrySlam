@@ -1,0 +1,9 @@
+Created Poem:
+An old man dripped putrid into the abyss by the full moon.
+An old man dripped cold from the well under the bed.
+
+Sentiment (<0 means negative, >0 means positive): 0.2732
+--> Therefore the Poem Seems Positive
+User Negativity Sentiment (1-10): 6
+User Creativity Score (1-10): 5
+Overall Score (1-20): 3.3608000000000002
