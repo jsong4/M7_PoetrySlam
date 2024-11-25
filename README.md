@@ -8,6 +8,7 @@ Assignment: M7 - Poetry Slam\
 Date: November 24, 2024
 
 **HOW TO RUN:**
+
 1) Make the following downloads in terminal:
         Download pyttsx3: "pip install pyttsx3"\
         Download matplotlib: "pip install matplotlib"\
@@ -26,7 +27,8 @@ Date: November 24, 2024
 
 **DESCRIPTION:**
 
-**Generation**
+**Generation:**
+
 The Spooky Syntax System creates a visually descriptive poem following the 
 theme of horror and darkness. Taking from a pool of subjects, verbs, objects, 
 adjectives, and places, the system randomly selects from each category 
@@ -41,7 +43,8 @@ quiet voice to read out the lines. It then uses matplotlib to display
 the poem, using a strange font and randomized sizes and colors to enhance 
 this uneasy sensation.
 
-**Creativity Evaluation Metrics**
+**Creativity Evaluation Metrics:**
+
 To evaluate the creativity of the outputted poem, the system strongly values 
 user feedback, while also incorporating objective analysis. It asks the user 
 how negative/dark the poem felt, as well as how original/novel the poem 
@@ -79,6 +82,22 @@ stronger computer scientist all around.
 
 **SCHOLARLY PAPERS THAT INSPIRED MY APPROACH:**
 
-1) 
-2) 
+1) "[Evaluating Creativity in Computational Co-Creative Systems](https://arxiv.org/abs/1807.09886)"
+   by Karimi, Grace, Maher, Davis
+
+This paper discusses how computer programs that collaborate with 
+human users should have their creativity be based on autonomous 
+creative systems, not just user experience. This influenced me 
+to incorporate an objective sentiment measurement with vader, not 
+just listening to user feedback.
+
+2) "[The Evaluation of Creative Systems](https://link.springer.com/chapter/10.1007/978-3-319-43610-4_8)"
+   by Ritchie
+
+This paper delves into how a lot of creative systems can only 
+be evaluated subjectively and depend largely on the unique 
+characteristics of each system. To calculate a more subjective 
+POV on my system's output, I ask for users to provide their 
+own feedback on how original and dark the created poem is.
+
 3) 
