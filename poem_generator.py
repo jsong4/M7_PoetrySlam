@@ -4,7 +4,7 @@ import pyttsx3
 import os
 import glob
 import matplotlib.pyplot as plt
-# from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # import spaCy's language model to be used for dependency parsing
 nlp = spacy.load("en_core_web_sm")
@@ -128,17 +128,20 @@ def display_poem(poem):
     # Show the plot
     plt.show()
 
-# def evaluate_sentiment(poem):
-#     """Evaluate the text and determine its sentiment with textblob polarity.
-#     The closer to -1, the more negative, and the closer to +1, the more
-#     positive"""
-#     try:
-#         blob = TextBlob(poem)
-#         sentiment = blob.sentiment.polarity
-#         return sentiment
-#     except Exception as e:
-#         print(f"Error occurred during sentiment analysis: {e}")
-#         return 0  # Default to neutral if there's an error
+def evaluate_sentiment(poem):
+    """Evaluate the text and determine its sentiment with vaderSentiment.
+    The closer the compound score is to -1, the more negative, and the closer
+    to +1, the more positive"""
+    # Initialize the VADER sentiment intensity analyzer
+    analyzer = SentimentIntensityAnalyzer()
+
+    # Get sentiment scores
+    sentiment_scores = analyzer.polarity_scores(poem)  
+
+    # Compound score for overall poem score
+    compound_score = sentiment_scores['compound']
+
+    return compound_score
 
 
 def main():
@@ -150,20 +153,30 @@ def main():
     speak(poem)
     display_poem(poem)
 
-    # sentiment = evaluate_sentiment(poem)
+    sentiment = evaluate_sentiment(poem)
     
-    # # based on the sentiment score, determine if poem is positive or negative
-    # positivity = "Neutral"
-    # if sentiment < 0: positivity = "Negative"
-    # elif sentiment == 0: positivity = "Neutral"
-    # else: positivity = "Positive"
+    # based on the sentiment score, determine if poem is positive or negative
+    positivity = "Neutral"
+    if sentiment < 0:
+        if sentiment < -0.7:
+            positivity = "Very Dark"
+        else:
+            positivity = "Negative"
+    elif sentiment == 0:
+        if sentiment > 0.7:
+            positivity = "Very Happy"
+        else:
+            positivity = "Neutral"
+    else: positivity = "Positive"
 
+    # Gather user feedback on creativity and negativity
     user_sentiment = int(input(
         "On a scale from 1-10, how negative/dark was the poem?: "))
     user_creativity = int(input(
         "On a scale from 1-10, how original was the poem?: "))
     
-    # joint_score = sentiment * -1 * user_sentiment + user_creativity
+    # Calculate overallscore (1-20, 20 being the best)
+    joint_score = sentiment * -1 * user_sentiment + user_creativity
     
     # get path to current directory to ensure compatability with other machines
     curr_directory = os.path.dirname(os.path.realpath(__file__))
@@ -172,15 +185,17 @@ def main():
         len(glob.glob(f"{curr_directory}/output/*.txt")) + 1
     )
     
+    # Display poem and evaluation as text file
     text = (
         f"Created Poem:\n"
         f"{poem}\n\n"
-        # f"Sentiment (<0 means negative, >0 means positive): {str(sentiment)}\n"
+        f"Sentiment (<0 means negative, >0 means positive): {str(sentiment)}\n"
+        f"--> Therefore the Poem Seems {positivity}\n"
         f"User Negativity Sentiment (1-10): {str(user_sentiment)}\n"
         f"User Creativity Score (1-10): {str(user_creativity)}\n"
-        # f"Overall Score (1-20): {str(joint_score)}"
+        f"Overall Score (1-20): {str(joint_score)}"
     )
-    # write the poem to output for future reference
+    # write the poem and evaluation to output for future reference
     with open(
         f"{curr_directory}/output/"
         f"Poem_{next_poem_index}.txt", "w"

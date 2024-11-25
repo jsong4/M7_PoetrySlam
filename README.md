@@ -7,4 +7,4 @@ How to run:
         Dowload en-core-web-sm: spacy download en_core_web_sm
         Download pyttsx3: pip install pyttsx3
         Download matplotlib: pip install matplotlib
-        Download textblob: pip install textblob
+        Download vaderSentiment: pip install vaderSentiment
