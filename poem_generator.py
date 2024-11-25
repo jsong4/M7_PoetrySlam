@@ -1,3 +1,14 @@
+"""
+SPOOKY SYNTAX SYSTEM
+
+Author: Jimmy Song
+Course: CSCI 3725
+Assignment: M7 - Poetry Slam
+Date: November 24, 2024
+
+Generation and evaluation of horror-themed poem
+"""
+
 import spacy
 import random
 import pyttsx3
@@ -39,7 +50,22 @@ themes = {
 }
 
 def generate_sentence(previous_lines):
-    """Generate a horror-themed sentence using dependency structures"""
+    """
+    Generate a horror-themed sentence based on previous lines.
+
+    This function dynamically selects random words from predefined lists 
+    and constructs a sentence. It also expands on themes based on the 
+    context provided by the previous lines to create a sense of continuity.
+
+    Parameters:
+        previous_lines (list of str): A list of previously generated lines 
+                                      to inform the theme expansion.
+
+    Returns:
+        tuple: A tuple containing:
+            - str: The generated horror-themed sentence.
+            - spacy.tokens.doc.Doc: The parsed spaCy document of the sentence.
+    """
 
     # Dynamically update word lists based on previous lines
     subject = random.choice(subjects)
@@ -71,6 +97,18 @@ def generate_sentence(previous_lines):
 # Function to generate the horror poem in a self-generating loop, given number
 # of stanzas wanted
 def generate_horror_poem(num_stanzas):
+    """
+    Generate a horror-themed poem with a specified number of stanzas.
+
+    This function constructs a horror poem by generating sentences in a loop 
+    and expanding on previous lines to create a theme-based narrative.
+
+    Parameters:
+        num_stanzas (int): The number of stanzas to generate.
+
+    Returns:
+        str: A string containing the full poem, with each stanza on a new line.
+    """
     poem = []
     previous_lines = []
     
@@ -84,8 +122,12 @@ def generate_horror_poem(num_stanzas):
     return "\n".join(poem)
 
 def speak(poem):
-    """Takes in the create poem string then implements pyttsx3 to read
-    it out loud"""
+    """
+    Speak the given poem out loud using the pyttsx3 text-to-speech engine.
+
+    Parameters:
+        poem (str): The poem to be spoken aloud.
+    """
 
     # Initialize the pyttsx3 engine
     engine = pyttsx3.init()
@@ -101,7 +143,15 @@ def speak(poem):
     engine.runAndWait()
 
 def display_poem(poem):
-    """Displays inputted poem with spooky effects, using Matplotlib"""
+    """
+    Display the poem with spooky visual effects using Matplotlib.
+
+    This function uses Matplotlib to render the poem on a dark-themed background 
+    with random font colors, sizes, and positions to enhance the spooky effect.
+
+    Parameters:
+        poem (str): The poem to be displayed with spooky effects.
+    """
     # Create a figure and axis
     fig, ax = plt.subplots(figsize=(10, 8))
     
@@ -129,9 +179,19 @@ def display_poem(poem):
     plt.show()
 
 def evaluate_sentiment(poem):
-    """Evaluate the text and determine its sentiment with vaderSentiment.
-    The closer the compound score is to -1, the more negative, and the closer
-    to +1, the more positive"""
+    """
+    Evaluate the sentiment of the poem using VADER sentiment analysis.
+
+    The function returns a compound score indicating the overall sentiment of 
+    the poem, with values closer to -1 being negative and values closer to 1 
+    being positive.
+
+    Parameters:
+        poem (str): The poem whose sentiment is to be evaluated.
+
+    Returns:
+        float: The compound sentiment score of the poem.
+    """
     # Initialize the VADER sentiment intensity analyzer
     analyzer = SentimentIntensityAnalyzer()
 
@@ -145,6 +205,14 @@ def evaluate_sentiment(poem):
 
 
 def main():
+    """
+    Main function to interact with the user, generate a horror poem, and
+    evaluate its sentiment and creativity.
+
+    The user is asked for the number of stanzas they want, and the program
+    generates a poem, speaks it, displays it with spooky effects, and evaluates
+    its sentiment and creativity based on user feedback.
+    """
     # Takes in number of stanzas desired by user
     num_stanzas = int(input("How many stanzas would you like?: "))
 

@@ -8,3 +8,4 @@ How to run:
         Download pyttsx3: pip install pyttsx3
         Download matplotlib: pip install matplotlib
         Download vaderSentiment: pip install vaderSentiment
+2) 
