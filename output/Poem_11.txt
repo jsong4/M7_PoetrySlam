@@ -1,0 +1,8 @@
+Created Poem:
+The demon clawed screaming over the bones in the haunted house.
+The demon watched screaming from the well infront of the bloody altar.
+The dismembered body murmured fading through the darkness by the silent tomb.
+shadow floated foul from the well under the blackened sky.
+
+User Negativity Sentiment (1-10): 8
+User Creativity Score (1-10): 8

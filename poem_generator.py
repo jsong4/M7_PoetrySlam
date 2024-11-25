@@ -4,7 +4,7 @@ import pyttsx3
 import os
 import glob
 import matplotlib.pyplot as plt
-from matplotlib import font_manager
+# from textblob import TextBlob
 
 # import spaCy's language model to be used for dependency parsing
 nlp = spacy.load("en_core_web_sm")
@@ -38,12 +38,13 @@ themes = {
               "ashes", "deceased"]
 }
 
-# Generate a horror-themed sentence using dependency structures
 def generate_sentence(previous_lines):
+    """Generate a horror-themed sentence using dependency structures"""
+
     # Dynamically update word lists based on previous lines
     subject = random.choice(subjects)
     verb = random.choice(verbs)
-    object_ = random.choice(objects)
+    object = random.choice(objects)
     adjective = random.choice(adjectives)
     place = random.choice(places)
     
@@ -52,7 +53,7 @@ def generate_sentence(previous_lines):
         last_line = previous_lines[-1]
         # Increase the sense of unease or shift to another theme
         if 'watching' in last_line or 'gaze' in last_line:
-            object_ = random.choice(themes['paranoia'])
+            object = random.choice(themes['paranoia'])
         elif 'decay' in last_line or 'rotting' in last_line:
             adjective = random.choice(themes['decay'])
         elif 'shadow' in last_line or 'darkness' in last_line:
@@ -61,7 +62,7 @@ def generate_sentence(previous_lines):
             verb = random.choice(themes['death'])
 
     # Generate a new sentence using spaCy dependency parsing
-    sentence = f"{subject} {verb} {adjective} {object_} {place}."
+    sentence = f"{subject} {verb} {adjective} {object} {place}."
     doc = nlp(sentence)
     
     # Store the sentence for future context-building
@@ -90,8 +91,8 @@ def speak(poem):
     engine = pyttsx3.init()
 
     # Set properties
-    engine.setProperty('rate', 150)  # Speed of speech (default is 200)
-    engine.setProperty('volume', 1)  # Volume level (0.0 to 1.0)
+    engine.setProperty('rate', 100)  # Speed of speech
+    engine.setProperty('volume', 0.6)  # Volume level
 
     # Make the engine say the poem
     engine.say(poem)
@@ -120,16 +121,50 @@ def display_poem(poem):
     for line in poem.split('\n'):
         ax.text(0.5, y_pos, line, fontsize=random.randint(12, 20), ha='center',
                 va='top', 
-                color=random.choice(['white', 'orange', 'grey', 'red']), 
+                color=random.choice(['white', 'grey', 'red']), 
                 fontname='Trattatello', alpha=0.8)
         y_pos -= 0.1  # Move down the line a bit
 
     # Show the plot
     plt.show()
 
-def main():
-    poem = generate_horror_poem(4)
+# def evaluate_sentiment(poem):
+#     """Evaluate the text and determine its sentiment with textblob polarity.
+#     The closer to -1, the more negative, and the closer to +1, the more
+#     positive"""
+#     try:
+#         blob = TextBlob(poem)
+#         sentiment = blob.sentiment.polarity
+#         return sentiment
+#     except Exception as e:
+#         print(f"Error occurred during sentiment analysis: {e}")
+#         return 0  # Default to neutral if there's an error
 
+
+def main():
+    # Takes in number of stanzas desired by user
+    num_stanzas = int(input("How many stanzas would you like?: "))
+
+    poem = generate_horror_poem(num_stanzas)
+
+    speak(poem)
+    display_poem(poem)
+
+    # sentiment = evaluate_sentiment(poem)
+    
+    # # based on the sentiment score, determine if poem is positive or negative
+    # positivity = "Neutral"
+    # if sentiment < 0: positivity = "Negative"
+    # elif sentiment == 0: positivity = "Neutral"
+    # else: positivity = "Positive"
+
+    user_sentiment = int(input(
+        "On a scale from 1-10, how negative/dark was the poem?: "))
+    user_creativity = int(input(
+        "On a scale from 1-10, how original was the poem?: "))
+    
+    # joint_score = sentiment * -1 * user_sentiment + user_creativity
+    
     # get path to current directory to ensure compatability with other machines
     curr_directory = os.path.dirname(os.path.realpath(__file__))
 
@@ -137,15 +172,20 @@ def main():
         len(glob.glob(f"{curr_directory}/output/*.txt")) + 1
     )
     
+    text = (
+        f"Created Poem:\n"
+        f"{poem}\n\n"
+        # f"Sentiment (<0 means negative, >0 means positive): {str(sentiment)}\n"
+        f"User Negativity Sentiment (1-10): {str(user_sentiment)}\n"
+        f"User Creativity Score (1-10): {str(user_creativity)}\n"
+        # f"Overall Score (1-20): {str(joint_score)}"
+    )
     # write the poem to output for future reference
     with open(
         f"{curr_directory}/output/"
         f"Poem_{next_poem_index}.txt", "w"
     ) as output_file:
-        output_file.write(poem)
-
-    speak(poem)
-    display_poem(poem)
+        output_file.write(text)
 
 
 if __name__ == "__main__":
