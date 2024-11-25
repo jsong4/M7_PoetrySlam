@@ -12,9 +12,9 @@ DESCRIPTION:
 
 HOW TO RUN:
 1) Make the following downloads in terminal:
-        Download pyttsx3: pip install pyttsx3
-        Download matplotlib: pip install matplotlib
-        Download vaderSentiment: pip install vaderSentiment
+        Download pyttsx3: "pip install pyttsx3" 
+        Download matplotlib: "pip install matplotlib" 
+        Download vaderSentiment: "pip install vaderSentiment" 
 
         Note: Ensure that you have the "Trattatello" font in your computer
         (This is a standard font that should come with any macOS system).
