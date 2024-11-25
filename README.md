@@ -2,19 +2,19 @@
 
 SPOOKY SYNTAX SYSTEM
 
-Author: Jimmy Song
-Course: CSCI 3725
-Assignment: M7 - Poetry Slam
+Author: Jimmy Song\
+Course: CSCI 3725\
+Assignment: M7 - Poetry Slam\
 Date: November 24, 2024
 
-DESCRIPTION:
+**DESCRIPTION:**
 
 
-HOW TO RUN:
+**HOW TO RUN:**
 1) Make the following downloads in terminal:
-        Download pyttsx3: "pip install pyttsx3" 
-        Download matplotlib: "pip install matplotlib" 
-        Download vaderSentiment: "pip install vaderSentiment" 
+        Download pyttsx3: "pip install pyttsx3"\
+        Download matplotlib: "pip install matplotlib"\
+        Download vaderSentiment: "pip install vaderSentiment"\
 
         Note: Ensure that you have the "Trattatello" font in your computer
         (This is a standard font that should come with any macOS system).
